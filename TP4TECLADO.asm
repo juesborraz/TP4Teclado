@@ -26,7 +26,7 @@ LIST P=16F887
 
 INICIO:
     
-;ConfiguraciÛn de pines 
+;Configuraci√≥n de pines 
     ;DIGITAL
     BANKSEL ANSEL     ;banco de registro ANSEL  
     CLRF    ANSEL
@@ -38,7 +38,7 @@ INICIO:
     CLRF    CM2CON0   ;desactivo comparadores ya que sino estaria malgastando pines
 
     ;PINES RA0 RA3 PARA MULTIPLEXADO DE 4 DISPLAYS 
-    BANKSEL TRISA     ;banco donde est· TRIS del puerto A 
+    BANKSEL TRISA     ;banco donde est√° TRIS del puerto A 
     MOVLW   b'11110000'
     MOVWF   TRISA     ;bit 0 a 3 salidas (Multiplexado) , bit 4 a 7 entradas 
     ;PIN RB0 INTERRUPCION EXTERNA 
@@ -69,7 +69,7 @@ INICIO:
     BANKSEL PORTD
     MOVLW   b'11111111'
     MOVWF   PORTD
-    ;TODAS LAS FILAS DEL TECLADO EST¡N EN BAJO 
+    ;TODAS LAS FILAS DEL TECLADO EST√ÅN EN BAJO 
     BANKSEL PORTB
     BCF     PORTB, 5
     BCF     PORTB, 6
@@ -115,7 +115,7 @@ ISR_INICIO:
     CALL    ISR_TECL       ;si la interrupcion fue por RB0, me voy a una subrutina 
 
     BANKSEL INTCON
-    BCF     INTCON, INTF  ;bajo bandera, siempre, ya que luego del call regreso ac· 
+    BCF     INTCON, INTF  ;bajo bandera, siempre, ya que luego del call regreso ac√° 
 
 ISR_FIN:
     SWAPF   STATUS_TEMP, W
@@ -140,7 +140,7 @@ ISR_TECL:
 
     BANKSEL PORTB
     BTFSS   PORTB, 1   
-    GOTO    TECLA_1   ;Si esta en 1 no hay tecla presionada, salteo. Si est· en 0, esta presionada, subrutina de esa tecla 
+    GOTO    TECLA_1   ;Si esta en 1 no hay tecla presionada, salteo. Si est√° en 0, esta presionada, subrutina de esa tecla 
     BTFSS   PORTB, 2 
     GOTO    TECLA_2
     BTFSS   PORTB, 3
@@ -304,7 +304,7 @@ TECL_LOAD:
     BTFSC   STATUS, Z
     GOTO    LOAD_3
 
-    GOTO    LOAD_4      ;si no son las anteriores es la ˙ltima 
+    GOTO    LOAD_4      ;si no son las anteriores es la √∫ltima 
 
 LOAD_1: ;para cargar en display numero 1 
     MOVF    NTECL, W
@@ -384,7 +384,7 @@ REFRESH_DSPL:
     MOVWF   PORTD            ;ese valor se convirtio en una combinacion de segmentos prendidos y apagados 
 
     BANKSEL PORTA
-    BCF     PORTA, 0         ;encindo ahora el display 1 
+    BCF     PORTA, 0         ;enciendo ahora el display 1 
     CALL    DELAY_5MS        ;espera
 
     ; DISPLAY 2
